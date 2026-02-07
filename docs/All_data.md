@@ -81,13 +81,16 @@
 - Số ngày làm việc trong tháng: Tổng số ngày trừ đi Thứ 7, Chủ nhật và ngày lễ.
 
 ### Dữ liệu ngành công nghiệp
-- Vốn đầu tư trực tiếp nước ngoài (FDI) giải ngân theo tháng
+- Vốn đầu tư trực tiếp nước ngoài (FDI) giải ngân theo tháng (OK)
+(VBMA - Hiệp hội Thị trường Trái phiếu Việt Nam - https://vbma.org.vn/vi/market-data/fdi)
 
 - Tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng
 
-- Kim ngạch Xuất - Nhập khẩu
+- Kim ngạch Xuất - Nhập khẩu (OK)
+(Nguồn chính: CƠ QUAN THỐNG KÊ QUỐC GIA CỤC THỐNG KÊ - BỘ TÀI CHÍNH - https://www.nso.gov.vn/xuat-nhap-khau/)
 
-- Giá năng lượng đầu vào: Giá than thế giới (Newcastle), giá dầu Brent, giá khí (Henry Hub).
+- Giá năng lượng đầu vào: Giá than thế giới (Newcastle), giá dầu Brent, giá khí (Henry Hub). (OK)
+(Nguồn chính: Investing.com - https://www.investing.com/commodities)
 
 ### Dữ liệu dân số
 - Dân số theo tháng/năm
