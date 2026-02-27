@@ -1,0 +1,226 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="TFT Transfer Learning Architecture" id="tft-architecture">
+    <mxGraphModel dx="1434" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- HEADER -->
+        <mxCell id="header" value="KIẾN TRÚC TFT TRANSFER LEARNING&#xa;DỰ BÁO SẢN LƯỢNG ĐIỆN VIỆT NAM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="600" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- PHASE 1: PRE-TRAINING -->
+        <mxCell id="phase1_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="120" width="650" height="400" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="phase1_title" value="GIAI ĐOẠN 1: PRE-TRAINING (Global Knowledge)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="130" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Input Data - Global -->
+        <mxCell id="global_data" value="Dữ liệu Ember&#xa;(Đa quốc gia)&#xa;&#xa;• Tần suất: Tháng&#xa;• Biến: Vật lý-Khí hậu&#xa;• Mục tiêu: Học&#xa;  regularities phổ quát" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="130" y="180" width="180" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Weather Encoder -->
+        <mxCell id="weather_encoder" value="Weather Encoder&#xa;&#xa;• hidden_size: 16-32&#xa;• hidden_cont: 8-16&#xa;• Học biểu diễn&#xa;  thời tiết → năng lượng" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="180" width="180" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="global_data" target="weather_encoder">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- LSTM Encoder -->
+        <mxCell id="lstm_encoder" value="LSTM Encoder&#xa;&#xa;• lstm_layers: 1&#xa;• Bidirectional: ❌&#xa;• Dropout: 0.2-0.3&#xa;• Temporal smoothing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="560" y="180" width="170" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1" source="weather_encoder" target="lstm_encoder">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Attention Mechanism -->
+        <mxCell id="attention" value="Temporal Fusion&#xa;(Attention)&#xa;&#xa;• attention_head: 1-2&#xa;• Dropout: 0.2&#xa;• Tránh overfitting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="340" width="180" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="1" source="lstm_encoder" target="attention">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Freeze Icon -->
+        <mxCell id="freeze_label" value="🔒 FREEZE&#xa;(Giữ nguyên trọng số)" style="text;html=1;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="550" y="340" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- PHASE 2: FINE-TUNING -->
+        <mxCell id="phase2_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+          <mxGeometry x="850" y="120" width="650" height="580" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="phase2_title" value="GIAI ĐOẠN 2: FINE-TUNING (Local Adaptation)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="870" y="130" width="450" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Vietnam Data -->
+        <mxCell id="vn_data" value="Dữ liệu Việt Nam&#xa;(~500 dòng)&#xa;&#xa;• Vật lý-Khí hậu&#xa;• GDP, IIP, CPI (lagged)&#xa;• Chính sách (FIT, giá)&#xa;• Hiệu ứng Tết" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="180" width="180" height="140" as="geometry" />
+        </mxCell>
+        
+        <!-- Transfer from Phase 1 -->
+        <mxCell id="transfer_arrow" value="Transfer&#xa;Weights" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#9673a6;dashed=1;dashPattern=8 8;fontSize=12;fontStyle=1" edge="1" parent="1" source="attention" target="lstm_finetune">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1100" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Weather Encoder (Frozen) -->
+        <mxCell id="weather_frozen" value="Weather Encoder&#xa;🔒 FROZEN&#xa;&#xa;• Giữ nguyên trọng số&#xa;• Không train lại" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="180" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="vn_data" target="weather_frozen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- LSTM (Frozen) -->
+        <mxCell id="lstm_finetune" value="LSTM Encoder&#xa;🔒 FROZEN&#xa;&#xa;• Giữ nguyên trọng số&#xa;• Không train lại" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="180" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="weather_frozen" target="lstm_finetune">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Attention (Frozen) -->
+        <mxCell id="attention_frozen" value="Temporal Fusion&#xa;🔒 FROZEN&#xa;&#xa;• Giữ nguyên trọng số&#xa;• Không train lại" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="310" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="lstm_finetune" target="attention_frozen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- VSN (Fine-tune) -->
+        <mxCell id="vsn" value="Variable Selection Network&#xa;✏️ FINE-TUNE&#xa;&#xa;• hidden: 8-16&#xa;• Đánh giá GDP, IIP, CPI&#xa;• Tự động chọn biến quan trọng&#xa;• LR: 1e-4 hoặc 5e-5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1100" y="310" width="160" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="vn_data" target="vsn">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Static Covariate Encoder -->
+        <mxCell id="static_encoder" value="Static Covariate Encoder&#xa;✏️ FINE-TUNE (nhẹ)&#xa;&#xa;• Loại nguồn điện&#xa;• Đặc thù hệ thống VN&#xa;• Fine-tune nhẹ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;align=left;verticalAlign=top;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="350" width="180" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="1" source="vn_data" target="static_encoder">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Fusion Layer -->
+        <mxCell id="fusion" value="Fusion Layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;align=center;verticalAlign=middle;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1100" y="480" width="350" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" edge="1" parent="1" source="attention_frozen" target="fusion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" edge="1" parent="1" source="vsn" target="fusion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" edge="1" parent="1" source="static_encoder" target="fusion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Output Head -->
+        <mxCell id="output" value="Output Head&#xa;🆕 TRAIN MỚI&#xa;&#xa;• Linear layer&#xa;• Train từ đầu cho VN&#xa;• Dự báo 1-3 tháng" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;align=left;verticalAlign=top;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1150" y="560" width="250" height="110" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="fusion" target="output">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- LEGEND -->
+        <mxCell id="legend_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="100" y="570" width="650" height="130" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend_title" value="CHÚ THÍCH" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="120" y="580" width="200" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="130" y="615" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1_text" value="🔒 FREEZE: Giữ nguyên trọng số từ pre-training" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="170" y="610" width="350" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="130" y="645" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2_text" value="✏️ FINE-TUNE: Train lại nhẹ với LR thấp (< 5-10% tham số)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="170" y="640" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="130" y="675" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3_text" value="🆕 TRAIN MỚI: Khởi tạo ngẫu nhiên và train hoàn toàn" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="170" y="670" width="400" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- KEY PRINCIPLES -->
+        <mxCell id="principles_container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="850" y="730" width="650" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="principles_title" value="NGUYÊN TẮC THIẾT KẾ" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="870" y="740" width="300" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="principle1" value="❌ Không tối đa hóa độ chính xác" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="770" width="300" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="principle2" value="✔ Tối thiểu hóa overfitting" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="795" width="300" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="principle3" value="✔ Giảm số tham số fine-tune (< 5-10%)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="820" width="300" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="principle4" value="✔ Ưu tiên ổn định & diễn giải" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="880" y="845" width="300" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Training Config -->
+        <mxCell id="config_title" value="CẤU HÌNH HUẤN LUYỆN:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1200" y="770" width="200" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="config1" value="• Pre-train LR: 1e-3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="795" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="config2" value="• Fine-tune LR: 1e-4 / 5e-5" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="815" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="config3" value="• Weight decay: Bắt buộc" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="835" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
