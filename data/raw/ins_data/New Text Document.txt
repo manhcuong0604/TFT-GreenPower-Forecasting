@@ -6,5 +6,7 @@
 - Kim ngạch Xuất - Nhập khẩu (OK)
 (Nguồn chính: CƠ QUAN THỐNG KÊ QUỐC GIA CỤC THỐNG KÊ - BỘ TÀI CHÍNH - https://www.nso.gov.vn/xuat-nhap-khau/)
 
-- Giá năng lượng đầu vào: Giá than thế giới (Newcastle), giá dầu Brent, giá khí (Henry Hub). (OK)
-(Nguồn chính: Investing.com - https://www.investing.com/commodities)
+- Giá năng lượng đầu vào: 
+Giá than thế giới (Newcastle):https://www.investing.com/commodities (OK)
+Giá dầu Brent: https://www.worldbank.org/ext/en/home (OK)
+Giá khí (Henry Hub): https://www.eia.gov/ (OK)
