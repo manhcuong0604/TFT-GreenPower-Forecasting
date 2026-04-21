@@ -1,7 +1,8 @@
 # data
 data/raw/entsoe_data/
 lightning_logs/
-checkpoints/
+checkpoint/
+scripts/
 
 
 # Byte-compiled / optimized / DLL files
